@@ -29,19 +29,19 @@ public class controller {
     HBox hbox_2= new HBox();
 
 
-    Label label1 = new Label("Item 1");
+    Label label1 = new Label("Durain");
     Label label2 = new Label("$1");
     Label label3 = new Label("Quantity:");
     ImageView imageView1;
     Spinner<Integer> spinner_item1 = new Spinner<>(0, 10, 0);
 
-    Label label1_item2 = new Label("Item 2");
+    Label label1_item2 = new Label("jackfruit");
     Label label2_item2 = new Label("$2");
     Label label3_item2 = new Label("Quantity:");
     ImageView imageView2;
     Spinner<Integer> spinner_item2 = new Spinner<>(0, 10, 0);
 
-    Label label1_item3 = new Label("Item 3");
+    Label label1_item3 = new Label("Longan");
     Label label2_item3 = new Label("$3");
     Label label3_item3 = new Label("Quantity:");
     ImageView imageView3;
