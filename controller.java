@@ -1,13 +1,15 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class controller {
@@ -18,76 +20,59 @@ public class controller {
     @FXML
     private ScrollPane scrollpane;
 
+    // 2D array of items: {name, price, imageFile}
+    private final Object[][] items = new Object[][] {
+            {"Durain", 1, "image1.jpg"},
+            {"Jackfruit", 2, "image2.jpg"},
+            {"Longan", 3, "image3.jpg"}
+    };
+
+    private VBox vbox;
+    private final List<Spinner<Integer>> spinners = new ArrayList<>();
+
     @FXML
     void submit_button(ActionEvent event) {
         int total = 0;
-        total += spinner_item1.getValue() * 1;
-        total += spinner_item2.getValue() * 2;
-        total += spinner_item3.getValue() * 3;
-        labelTotal.setText("Total: $" + total); 
-
+        for (int i = 0; i < items.length; i++) {
+            int price = (Integer) items[i][1];
+            int qty = spinners.get(i).getValue();
+            total += price * qty;
+        }
+        labelTotal.setText("Total: $" + total);
     }
-    VBox vbox = new VBox();
-
-    HBox hbox = new HBox();
-    HBox hbox_1 = new HBox();
-    HBox hbox_2= new HBox();
-
-
-    Label label1 = new Label("Durain");
-    Label label2 = new Label("$1");
-    Label label3 = new Label("Quantity:");
-    ImageView imageView1;
-    Spinner<Integer> spinner_item1 = new Spinner<>(0, 10, 0);
-
-    Label label1_item2 = new Label("jackfruit");
-    Label label2_item2 = new Label("$2");
-    Label label3_item2 = new Label("Quantity:");
-    ImageView imageView2;
-    Spinner<Integer> spinner_item2 = new Spinner<>(0, 10, 0);
-
-    Label label1_item3 = new Label("Longan");
-    Label label2_item3 = new Label("$3");
-    Label label3_item3 = new Label("Quantity:");
-    ImageView imageView3;
-    Spinner<Integer> spinner_item3 = new Spinner<>(0, 10, 0);
 
     @FXML
     void initialize() {
-        imageView1 = new ImageView();
-        imageView1.setFitWidth(120);
-        imageView1.setFitHeight(120);
-        imageView1.setPreserveRatio(true);
-        loadImage(imageView1, "image1.jpg");
-
-        imageView2 = new ImageView();
-        imageView2.setFitWidth(120);
-        imageView2.setFitHeight(120);
-        imageView2.setPreserveRatio(true);
-        loadImage(imageView2, "image2.jpg");
-
-        imageView3 = new ImageView();
-        imageView3.setFitWidth(120);
-        imageView3.setFitHeight(120);
-        imageView3.setPreserveRatio(true);
-        loadImage(imageView3, "image3.jpg");
-
-        hbox.setSpacing(100);
-        hbox_1.setSpacing(100);
-        hbox_2.setSpacing(100);
+        vbox = new VBox(10);
         vbox.setSpacing(10);
 
-        // add image and labels to row 1
-        hbox.getChildren().addAll(imageView1, label1, label2, label3, spinner_item1);
-        // add image and labels to row 2
-        hbox_1.getChildren().addAll(imageView2, label1_item2, label2_item2, label3_item2, spinner_item2);
-        // add image and labels to row 3
-        hbox_2.getChildren().addAll(imageView3, label1_item3, label2_item3, label3_item3, spinner_item3);
-        
-        // add all hboxes into vbox 
-        vbox.getChildren().addAll(hbox, hbox_1, hbox_2);
+        // no ListView: rows are shown directly in the scroll pane
 
-        // add vbox into scrollpane
+        for (int i = 0; i < items.length; i++) {
+            String name = (String) items[i][0];
+            Integer price = (Integer) items[i][1];
+            String imageFile = (String) items[i][2];
+
+            ImageView iv = new ImageView();
+            iv.setFitWidth(120);
+            iv.setFitHeight(120);
+            iv.setPreserveRatio(true);
+            loadImage(iv, imageFile);
+
+            Label nameLabel = new Label((i + 1) + ". " + name);
+            Label priceLabel = new Label("$" + price);
+            Label qtyLabel = new Label("Quantity:");
+
+            Spinner<Integer> spinner = new Spinner<>(0, 10, 0);
+            spinners.add(spinner);
+
+            HBox row = new HBox(10);
+            row.setSpacing(10);
+            row.getChildren().addAll(iv, nameLabel, priceLabel, qtyLabel, spinner);
+
+            vbox.getChildren().add(row);
+        }
+
         scrollpane.setContent(vbox);
     }
 

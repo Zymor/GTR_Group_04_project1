@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "main$Main",
-            "request": "launch",
-            "mainClass": "main$Main",
-            "projectName": "GTR_Group_04_project1_1b248bbe"
-        },
-        {
-            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "Main",
