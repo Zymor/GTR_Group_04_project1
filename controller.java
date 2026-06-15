@@ -20,6 +20,11 @@ public class controller {
 
     @FXML
     void submit_button(ActionEvent event) {
+        int total = 0;
+        total += spinner_item1.getValue() * 1;
+        total += spinner_item2.getValue() * 2;
+        total += spinner_item3.getValue() * 3;
+        labelTotal.setText("Total: $" + total); 
 
     }
     VBox vbox = new VBox();
