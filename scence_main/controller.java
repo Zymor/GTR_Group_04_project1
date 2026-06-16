@@ -22,9 +22,9 @@ public class controller {
 
     // 2D array of items: {name, price, imageFile}
     private final Object[][] items = new Object[][] {
-            {"Durain", 1, "image1.jpg"},
-            {"Jackfruit", 2, "image2.jpg"},
-            {"Longan", 3, "image3.jpg"}
+            {"Durain", 1, "fruit/image1.jpg"},
+            {"Jackfruit", 2, "fruit/image2.jpg"},
+            {"Longan", 3, "fruit/image3.jpg"}
     };
 
     private VBox vbox;
@@ -80,8 +80,14 @@ public class controller {
         java.net.URL imageUrl = getClass().getResource("/" + imageName);
         if (imageUrl != null) {
             imageView.setImage(new Image(imageUrl.toExternalForm()));
+            return;
+        }
+
+        File imageFile = new File(System.getProperty("user.dir"), imageName);
+        if (imageFile.exists()) {
+            imageView.setImage(new Image(imageFile.toURI().toString()));
         } else {
-            imageView.setImage(new Image(new File(imageName).toURI().toString()));
+            System.err.println("Image not found: " + imageName);
         }
     }
 }

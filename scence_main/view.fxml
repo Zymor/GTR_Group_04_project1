@@ -29,12 +29,12 @@
       <Label fx:id="labelTotal" layoutX="463.0" layoutY="586.0" prefHeight="17.0" prefWidth="52.0" text="Total" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="71.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@photo_2026-06-12_13-30-06.jpg" />
+            <Image url="file:./fruit/photo_2026-06-12_13-30-06.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="538.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@photo_2026-06-12_13-30-03.jpg" />
+            <Image url="file:./fruit/photo_2026-06-12_13-30-03.jpg" />
          </image>
       </ImageView>
    </children>
