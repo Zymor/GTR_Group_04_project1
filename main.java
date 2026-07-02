@@ -15,7 +15,7 @@
 
         @Override
         public void start(Stage stage) throws Exception {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scence_main/view.fxml"));
             loader.setBuilderFactory(null);
             Parent root = loader.load();
 
